@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 240">
+  <ellipse cx="110" cy="228" rx="60" ry="8" fill="#1d1a3a" opacity=".15"/>
+  <!-- orejas -->
+  <path d="M48 70 40 22 82 52Z" fill="#5b4bff" stroke="#1d1a3a" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M172 70 180 22 138 52Z" fill="#5b4bff" stroke="#1d1a3a" stroke-width="5" stroke-linejoin="round"/>
+  <!-- cuerpo -->
+  <path d="M110 40c52 0 76 36 76 86 0 54-32 92-76 92s-76-38-76-92c0-50 24-86 76-86Z" fill="#7a6cff" stroke="#1d1a3a" stroke-width="5"/>
+  <path d="M110 120c28 0 44 22 44 50 0 26-18 42-44 42s-44-16-44-42c0-28 16-50 44-50Z" fill="#fffdf8" stroke="#1d1a3a" stroke-width="4"/>
+  <g stroke="#c9c2ff" stroke-width="4" fill="none" stroke-linecap="round"><path d="M92 160q9 8 18 0q9 8 18 0"/><path d="M92 182q9 8 18 0q9 8 18 0"/></g>
+  <!-- visor ojos -->
+  <rect x="50" y="66" width="120" height="64" rx="32" fill="#1d1a3a"/>
+  <circle cx="82" cy="98" r="22" fill="#c6f432"/><circle cx="138" cy="98" r="22" fill="#c6f432"/>
+  <circle cx="86" cy="98" r="10" fill="#1d1a3a"><animate attributeName="cx" values="86;80;86" dur="4s" repeatCount="indefinite"/></circle>
+  <circle cx="142" cy="98" r="10" fill="#1d1a3a"><animate attributeName="cx" values="142;136;142" dur="4s" repeatCount="indefinite"/></circle>
+  <circle cx="90" cy="93" r="3.5" fill="#fff"/><circle cx="146" cy="93" r="3.5" fill="#fff"/>
+  <path d="M100 128 110 142 120 128Z" fill="#ffb627" stroke="#1d1a3a" stroke-width="4" stroke-linejoin="round"/>
+  <!-- birrete -->
+  <path d="M60 46 110 26 160 46 110 64Z" fill="#1d1a3a"/>
+  <line x1="152" y1="49" x2="160" y2="74" stroke="#ff6b5b" stroke-width="4"/><circle cx="160" cy="77" r="6" fill="#ff6b5b"/>
+  <!-- alas -->
+  <path d="M36 130q-22 20-12 56 18-8 24-30Z" fill="#5b4bff" stroke="#1d1a3a" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M184 130q22 20 12 56-18-8-24-30Z" fill="#5b4bff" stroke="#1d1a3a" stroke-width="5" stroke-linejoin="round"/>
+  <!-- patas -->
+  <g fill="#ffb627" stroke="#1d1a3a" stroke-width="4"><rect x="84" y="210" width="16" height="14" rx="5"/><rect x="120" y="210" width="16" height="14" rx="5"/></g>
+</svg>
