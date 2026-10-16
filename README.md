@@ -10,6 +10,8 @@ Página interactiva para una clase de **70 minutos** con estudiantes de **5.º a
 
 También incluye nombre del estudiante, insignias, reloj de tiempo activo, progreso guardado en el navegador y una **bitácora** final que se puede imprimir en PDF o copiar como texto para Classroom.
 
+**Idiomas: español, francés e inglés.** El botón **🌐 ES ▾** (arriba a la derecha) cambia el idioma en cualquier momento; por defecto está en **español**. Se traduce todo: consignas, el texto del Momento 2, los prompts tutores y de socios IA (la IA responde en ese idioma), la máquina de startups, la tarjeta y la bitácora. El medidor de ingredientes reconoce prompts escritos en cualquiera de los tres idiomas.
+
 No usa preguntas de opción múltiple: todas las actividades piden construir, comparar, explicar o decidir.
 
 ## 🚀 Publicar en GitHub Pages
@@ -19,11 +21,11 @@ No usa preguntas de opción múltiple: todas las actividades piden construir, co
 4. En 1 o 2 minutos el sitio queda en: **https://mamanirafa.github.io/ia_promptlab/**
 
 ## ✏️ Personalizar
-Todo está en `js/data.js`: datos del docente, código docente, misiones, rondas, el **texto** del Momento 2, sus ideas clave, los prompts tutores y las opciones de la máquina de startups.
+Los contenidos están en `js/data.js` (español), `js/data.fr.js` (francés) y `js/data.en.js` (inglés); los textos de la interfaz, en `js/i18n.js`. En `js/data.js` está además la configuración: datos del docente, código docente, misiones, rondas, el **texto** del Momento 2, sus ideas clave, los prompts tutores y las opciones de la máquina de startups.
 
 ## 📁 Estructura
 ```
-index.html · css/styles.css · js/data.js · js/app.js · js/card.js
+index.html · css/styles.css · js/data.js · js/data.fr.js · js/data.en.js · js/i18n.js · js/app.js · js/card.js
 assets/img/ (ilustraciones SVG originales: Nova, íconos)
 docs/GUIA_DOCENTE.md (secuencia, guion, criterios de evaluación)
 ```

@@ -1,6 +1,8 @@
 /* =========================================================
    PROMPTLAB · Taller de instrucciones a la IA
-   Contenidos editables (solo tocá este archivo para adaptar)
+   Contenidos en ESPAÑOL (idioma por defecto) y configuración.
+   Las versiones en francés e inglés están en data.fr.js y data.en.js
+   y deben mantener la MISMA estructura, los mismos id y el mismo orden.
    ========================================================= */
 
 const CONFIG = {
@@ -8,6 +10,7 @@ const CONFIG = {
   subtitulo: "Laboratorio de instrucciones a la IA",
   docente: "Prof. Rafael Mamani",
   curso: "5.º año · Ciclo Orientado en Economía",
+  cursoI18n: { fr: "5e année · Cycle orienté Économie", en: "Year 5 · Economics Track" },
   institucion: "",
   minutosClase: 70,
   // Código para desbloquear momentos o seguir sin acceso a una IA. Cambialo antes de cada clase.
@@ -192,3 +195,6 @@ const SOCIOS_IA = [
     prompt: "Sos un inversor muy exigente de un programa de TV de emprendedores. Te presento mi startup:\n{CANVAS}\nSeñalá 3 debilidades y haceme 2 preguntas difíciles. Sé duro pero respetuoso. NO me des las soluciones: quiero pensarlas yo."
   }
 ];
+
+/* Paquete de contenidos en español (lo usa el selector de idioma) */
+const PL_ES = { AGENDA, MISIONES, RONDAS, INGREDIENTES, DATOS_SENSIBLES, TEXTO, TUTORES, PROMPT_TRAMPA, TRAGAMONEDAS, SOCIOS_IA };

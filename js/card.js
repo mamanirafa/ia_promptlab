@@ -1,10 +1,10 @@
 /* Tarjeta coleccionable de la startup (canvas → PNG) */
 const StartupCard = (() => {
   const RAREZAS = [
-    { min: 900000, n: "LEGENDARIA", c1: "#ffb627", c2: "#ff6b5b", star: 4 },
-    { min: 600000, n: "ÉPICA", c1: "#8b5bff", c2: "#ff8fd1", star: 3 },
-    { min: 300000, n: "RARA", c1: "#10b5a5", c2: "#5b4bff", star: 2 },
-    { min: 0, n: "COMÚN", c1: "#9aa0b4", c2: "#5b6178", star: 1 }
+    { min: 900000, n: "card.r4", c1: "#ffb627", c2: "#ff6b5b", star: 4 },
+    { min: 600000, n: "card.r3", c1: "#8b5bff", c2: "#ff8fd1", star: 3 },
+    { min: 300000, n: "card.r2", c1: "#10b5a5", c2: "#5b4bff", star: 2 },
+    { min: 0, n: "card.r1", c1: "#9aa0b4", c2: "#5b6178", star: 1 }
   ];
   const rr = (ctx, x, y, w, h, r) => { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); };
   function wrap(ctx, text, x, y, maxW, lh, maxLines) {
@@ -22,6 +22,7 @@ const StartupCard = (() => {
     try { await document.fonts.ready; } catch (e) {}
     const ctx = cv.getContext("2d"), W = cv.width, H = cv.height;
     const R = RAREZAS.find(r => d.inversion >= r.min);
+    const tx = d.tx || ((k) => k);
     ctx.clearRect(0, 0, W, H);
     // marco
     const g = ctx.createLinearGradient(0, 0, W, H); g.addColorStop(0, R.c1); g.addColorStop(1, R.c2);
@@ -35,7 +36,7 @@ const StartupCard = (() => {
     // cabecera
     ctx.fillStyle = "#1d1a3a"; rr(ctx, 34, 34, W - 68, 70, 16); ctx.fill();
     ctx.fillStyle = "#fff"; ctx.font = "700 34px 'Space Grotesk', sans-serif"; ctx.textAlign = "left";
-    let name = (d.nombre || "Mi startup").toUpperCase(); ctx.fillText(name.length > 18 ? name.slice(0, 18) + "…" : name, 56, 82);
+    let name = (d.nombre || tx("card.default")).toUpperCase(); ctx.fillText(name.length > 18 ? name.slice(0, 18) + "…" : name, 56, 82);
     ctx.textAlign = "right"; ctx.font = "26px sans-serif"; ctx.fillText("★".repeat(R.star), W - 56, 80);
     // ilustración
     ctx.fillStyle = "#fffdf8"; rr(ctx, 34, 120, W - 68, 300, 18); ctx.fill();
@@ -44,27 +45,30 @@ const StartupCard = (() => {
     ctx.fillStyle = bg; ctx.fillRect(40, 126, W - 80, 288);
     ctx.textAlign = "center"; ctx.font = "150px sans-serif"; ctx.fillText(d.slot?.superpoder?.e || "🚀", W / 2, 320);
     ctx.font = "700 20px 'Space Grotesk', sans-serif"; ctx.fillStyle = "#1d1a3a";
-    ctx.fillText("Superpoder IA: " + (d.slot?.superpoder?.t || "—"), W / 2, 395);
+    ctx.fillText(tx("card.power") + tx("card.sep") + (d.slot?.superpoder?.t || "—"), W / 2, 395);
     // rareza
     ctx.fillStyle = "#1d1a3a"; rr(ctx, W / 2 - 110, 402, 220, 40, 20); ctx.fill();
-    ctx.fillStyle = R.c1; ctx.font = "700 20px 'Space Grotesk', sans-serif"; ctx.fillText(R.n, W / 2, 429);
+    ctx.fillStyle = R.c1; ctx.font = "700 20px 'Space Grotesk', sans-serif"; ctx.fillText(tx(R.n), W / 2, 429);
     // slogan
     ctx.fillStyle = "#1d1a3a"; ctx.font = "italic 600 24px Inter, sans-serif";
     wrap(ctx, "“" + (d.slogan || "") + "”", W / 2, 488, W - 100, 30, 2);
     // datos
     ctx.fillStyle = "rgba(255,255,255,.88)"; rr(ctx, 34, 540, W - 68, 190, 16); ctx.fill();
     ctx.textAlign = "left"; ctx.fillStyle = "#1d1a3a";
-    ctx.font = "700 16px Inter, sans-serif"; ctx.fillText("PROBLEMA", 54, 570);
+    ctx.font = "700 16px Inter, sans-serif"; ctx.fillText(tx("card.problem"), 54, 570);
     ctx.font = "500 17px Inter, sans-serif"; wrap(ctx, d.slot?.problema || "", 54, 594, W - 108, 22, 2);
-    ctx.font = "700 16px Inter, sans-serif"; ctx.fillText("CLIENTE", 54, 652); ctx.fillText("INVERSIÓN", W / 2 + 10, 652);
+    ctx.font = "700 16px Inter, sans-serif"; ctx.fillText(tx("card.client"), 54, 652); ctx.fillText(tx("card.inv"), W / 2 + 10, 652);
     ctx.font = "500 17px Inter, sans-serif"; ctx.fillText(d.slot?.cliente || "", 54, 676);
-    ctx.font = "700 26px 'Space Grotesk', sans-serif"; ctx.fillStyle = "#19a96b"; ctx.fillText("$" + Number(d.inversion || 0).toLocaleString("es-AR"), W / 2 + 10, 682);
-    ctx.fillStyle = "#1d1a3a"; ctx.font = "500 14px Inter, sans-serif"; ctx.fillText("Restricción: " + (d.slot?.restriccion || ""), 54, 712);
+    ctx.font = "700 26px 'Space Grotesk', sans-serif"; ctx.fillStyle = "#19a96b"; ctx.fillText("$" + Number(d.inversion || 0).toLocaleString(d.locale || "es-AR"), W / 2 + 10, 682);
+    ctx.fillStyle = "#1d1a3a"; ctx.font = "500 14px Inter, sans-serif"; wrap(ctx, tx("card.limit") + tx("card.sep") + (d.slot?.restriccion || ""), 54, 712, W - 108, 18, 1);
     // pie
     ctx.fillStyle = "#1d1a3a"; rr(ctx, 34, 748, W - 68, 58, 14); ctx.fill();
     ctx.fillStyle = "#c6f432"; ctx.font = "700 18px Inter, sans-serif"; ctx.textAlign = "left";
-    ctx.fillText("Fundador/a: " + (d.fundador || ""), 54, 784);
-    ctx.textAlign = "right"; ctx.fillStyle = "#fff"; ctx.font = "600 14px 'Space Grotesk', sans-serif"; ctx.fillText("PromptLab · Tanque de Inversores IA", W - 54, 784);
+    const fit = (txt, max, size, fam) => { let z = size; do { ctx.font = fam.replace("{s}", z); z--; } while (ctx.measureText(txt).width > max && z > 9); };
+    const founder = tx("card.founder") + tx("card.sep") + (d.fundador || "");
+    fit(founder, (W - 108) * 0.56, 18, "700 {s}px Inter, sans-serif");
+    ctx.fillText(founder, 54, 784);
+    ctx.textAlign = "right"; ctx.fillStyle = "#fff"; fit(tx("card.footer"), (W - 108) * 0.40, 14, "600 {s}px 'Space Grotesk', sans-serif"); ctx.fillText(tx("card.footer"), W - 54, 784);
   }
   function download(cv, name) {
     const a = document.createElement("a");

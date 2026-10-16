@@ -14,15 +14,21 @@
 <body>
   <div class="blobs" aria-hidden="true"><span></span><span></span><span></span></div>
 
+  <!-- ===== SELECTOR DE IDIOMA (siempre visible, arriba a la derecha) ===== -->
+  <div class="lang" id="lang">
+    <button class="lang-btn" id="lang-btn" aria-haspopup="true" aria-expanded="false" data-i18n-title="lang.label">🌐 <span id="lang-current">ES</span> ▾</button>
+    <div class="lang-menu" id="lang-menu" role="menu"></div>
+  </div>
+
   <header id="topbar" class="topbar hidden">
-    <button class="brand" id="btn-home" title="Volver al inicio">
+    <button class="brand" id="btn-home" data-i18n-title="top.home">
       <img src="assets/img/logo.svg" alt="" /> <span>PromptLab</span>
     </button>
     <div class="badges" id="top-badges" aria-label="Insignias"></div>
     <div class="top-right">
-      <div class="who"><small>Estudiante</small><b id="top-name">—</b></div>
-      <div class="clock" id="top-clock" title="Tiempo de trabajo">00:00</div>
-      <button class="icon-btn" id="btn-menu" aria-label="Opciones">⚙️</button>
+      <div class="who"><small data-i18n="top.student">Estudiante</small><b id="top-name">—</b></div>
+      <div class="clock" id="top-clock" data-i18n-title="top.clock">00:00</div>
+      <button class="icon-btn" id="btn-menu" data-i18n-title="top.menu">⚙️</button>
     </div>
   </header>
 
@@ -32,32 +38,32 @@
       <div class="hero">
         <img src="assets/img/nova.svg" alt="Nova, la guía del laboratorio" class="hero-nova" />
         <div>
-          <p class="kicker">Taller de Inteligencia Artificial · 70 minutos</p>
+          <p class="kicker" data-i18n="w.kicker"></p>
           <h1>Prompt<span>Lab</span></h1>
-          <p class="lead">La IA responde tan bien como vos le preguntes. Hoy vas a <b>experimentar</b> distintas formas de darle instrucciones, a usarla para <b>aprender de verdad</b> (no para copiar) y a fundar tu propia <b>startup</b>.</p>
+          <p class="lead" data-i18n="w.lead"></p>
         </div>
       </div>
 
       <div class="cards3">
-        <div class="mcard c1"><img src="assets/img/m1.svg" alt="" /><h3>1 · Laboratorio de prompts</h3><p>Probá 4 formas de pedirle algo a la IA y compará los resultados.</p><span>22 min</span></div>
-        <div class="mcard c2"><img src="assets/img/m2.svg" alt="" /><h3>2 · Aprender con la IA</h3><p>Usá a la IA como tutora para entender un texto… sin que piense por vos.</p><span>23 min</span></div>
-        <div class="mcard c3"><img src="assets/img/m3.svg" alt="" /><h3>3 · Tanque de Inversores</h3><p>Girá la máquina, creá una startup con socios IA y conseguí inversión.</p><span>15 min</span></div>
+        <div class="mcard c1"><img src="assets/img/m1.svg" alt="" /><h3 data-i18n="w.c1t"></h3><p data-i18n="w.c1d"></p><span id="mc-m1-min"></span></div>
+        <div class="mcard c2"><img src="assets/img/m2.svg" alt="" /><h3 data-i18n="w.c2t"></h3><p data-i18n="w.c2d"></p><span id="mc-m2-min"></span></div>
+        <div class="mcard c3"><img src="assets/img/m3.svg" alt="" /><h3 data-i18n="w.c3t"></h3><p data-i18n="w.c3d"></p><span id="mc-m3-min"></span></div>
       </div>
 
       <form id="form-name" class="panel name-panel" autocomplete="off">
-        <label for="input-name">Tu nombre y apellido</label>
+        <label for="input-name" data-i18n="w.nameLabel"></label>
         <div class="row nowrap">
-          <input id="input-name" type="text" maxlength="40" placeholder="Ej.: Tomás Gutiérrez" required />
-          <button class="btn primary" type="submit">Entrar al laboratorio →</button>
+          <input id="input-name" type="text" maxlength="40" data-i18n-ph="w.namePh" required />
+          <button class="btn primary" type="submit" data-i18n="w.enter"></button>
         </div>
-        <small>Aparece en tu bitácora final. Trabajás en tu compu, pero en algunos momentos vas a interactuar con tu compañero/a de al lado.</small>
+        <small data-i18n="w.nameHelp"></small>
       </form>
 
       <div id="resume" class="panel hidden">
-        <p>Hay una sesión guardada de <b id="resume-name"></b>.</p>
+        <p id="resume-text"></p>
         <div class="row">
-          <button class="btn primary" id="btn-resume">Continuar</button>
-          <button class="btn ghost" id="btn-new">Empezar con otro nombre</button>
+          <button class="btn primary" id="btn-resume" data-i18n="w.continue"></button>
+          <button class="btn ghost" id="btn-new" data-i18n="w.new"></button>
         </div>
       </div>
     </section>
@@ -80,8 +86,8 @@
           <p class="kicker" id="stage-kicker"></p>
           <h2 id="stage-title"></h2>
         </div>
-        <div class="stage-timer" id="stage-timer" title="Tiempo sugerido para este momento"></div>
-        <button class="btn ghost small" id="btn-hub">← Mapa</button>
+        <div class="stage-timer" id="stage-timer" data-i18n-title="st.timer"></div>
+        <button class="btn ghost small" id="btn-hub" data-i18n="st.map"></button>
       </div>
       <div class="steps" id="stage-steps"></div>
       <div id="stage-body"></div>
@@ -97,9 +103,12 @@
     <div class="modal-box"><div id="modal-content"></div><div class="row center" id="modal-actions"></div></div>
   </div>
   <div id="toast" class="toast"></div>
-  <footer class="foot">PromptLab · <span id="foot-course"></span> · Basado en EsencIA, Unidades 2 y 3</footer>
+  <footer class="foot" id="foot"></footer>
 
   <script src="js/data.js"></script>
+  <script src="js/data.fr.js"></script>
+  <script src="js/data.en.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/card.js"></script>
   <script src="js/app.js"></script>
 </body>
